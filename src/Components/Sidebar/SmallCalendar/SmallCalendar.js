@@ -32,7 +32,7 @@ export default function SmallCalendar() {
 	function setDayClass(day) {
 		const format = "DD-MM-YY";
 		const thisDay = day.format(format);
-		const selDay = daySelected
+		const selDay = daySelected?.format(format);
 		const currentDay = dayjs().format(format);
 		if (thisDay === currentDay) {
 			return "small-calendar-current-day";
@@ -69,7 +69,7 @@ export default function SmallCalendar() {
 								className={`small-calendar-day ${setDayClass(day)}`}
 								key={idx}
 								onClick={() => {
-									dispatch(setDaySelected(day.format("DD-MM-YY")));
+									dispatch(setDaySelected(day));
 									dispatch(setSmallCalendarMonthIndex(currentMonthIdx));
 								}}
 							>

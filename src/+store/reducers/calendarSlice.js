@@ -23,6 +23,9 @@ export const calendarSlice = createSlice({
 		setShowSidebar: (state) => {
 			state.showSidebar = !state.showSidebar;
 		},
+		setShowEventModal: (state, action) => {
+			state.showEventModal = action.payload;
+		},
 	},
 });
 
@@ -33,6 +36,7 @@ export const {
 	setDaySelected,
 	setSmallCalendarMonthIndex,
 	setShowSidebar,
+	setShowEventModal,
 } = calendarSlice.actions;
 
 export const selectCalendar = (state) => state.calendar;

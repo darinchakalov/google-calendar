@@ -7,7 +7,7 @@ export default function Sidebar() {
 	const showSideBar = useSelector((state) => state.showSidebar);
 
 	function setHideSideBarClass() {
-		if (showSideBar) {
+		if (!showSideBar) {
 			return "hide-sidebar";
 		} else return "";
 	}

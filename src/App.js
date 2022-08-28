@@ -7,10 +7,11 @@ import { getCurrentMonth } from "./Utilities/Utilities.js";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar.js";
 import { useSelector } from "react-redux";
+import EventModal from "./Components/EventModal/EventModal.js";
 
 function App() {
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-	const monthIndex = useSelector((state) => state.monthIndex);
+	const { monthIndex, showEventModal } = useSelector((state) => state);
 
 	useEffect(() => {
 		setCurrentMonth(getCurrentMonth(monthIndex));
@@ -18,6 +19,8 @@ function App() {
 
 	return (
 		<>
+			{showEventModal && <EventModal />}
+
 			<Header />
 			<div className="main-wrapper">
 				<Sidebar />
