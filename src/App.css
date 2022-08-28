@@ -16,5 +16,6 @@
 
 .main-wrapper {
 	display: flex;
-	width: 100vw;
+	width: 99vw;
+	height: 90vh;
 }

@@ -8,7 +8,7 @@ import "./SmalCalendar.css";
 export default function SmallCalendar() {
 	const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-	const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } = useContext(GlobalContext);
+	const { monthIndex, setSmallCalendarMonthIndex, daySelected, setDaySelected } = useContext(GlobalContext);
 
 	useEffect(() => {
 		setCurrentMonth(getCurrentMonth(currentMonthIdx));
@@ -19,30 +19,30 @@ export default function SmallCalendar() {
 	}, [monthIndex]);
 
 	function setNextMonth() {
-		setCurrentMonthIdx(monthIndex + 1);
+		setCurrentMonthIdx(currentMonthIdx + 1);
 	}
 
 	function setPrevMonth() {
-		setCurrentMonthIdx(monthIndex - 1);
+		setCurrentMonthIdx(currentMonthIdx - 1);
 	}
 
-    function setSelectedDayClass(day) {
-        const format = "DD-MM-YY";
-		console.log("day: " + day.format(format), "selectedday: " + daySelected);
-		if (daySelected) {
-			return "small-calendar-selected date";
-		}
-	}
-
-	function getCurrentDay(day) {
-		return day.format("DD-MM-YY") === dayjs().format("DD-MM-YY") ? "small-calendar-current-day" : "";
+	function setDayClass(day) {
+		const format = "DD-MM-YY";
+		const thisDay = day.format(format);
+		const selDay = daySelected.format(format);
+		const currentDay = dayjs().format(format);
+		if (thisDay === currentDay) {
+			return "small-calendar-current-day";
+		} else if (thisDay === selDay) {
+			return "small-calendar-selected-day";
+		} else return "";
 	}
 
 	return (
 		<div className="small-calendar-wrapper">
 			<header className="small-calendar-header">
 				<span className="small-calendar-date">
-					{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}
+					{dayjs(new Date(dayjs().year(), currentMonthIdx)).format("MMMM YYYY")}
 				</span>
 				<div className="small-calendar-buttons-wrapper">
 					<button className="small-calendar-button" onClick={setPrevMonth}>
@@ -63,10 +63,10 @@ export default function SmallCalendar() {
 					<Fragment key={i}>
 						{row.map((day, idx) => (
 							<button
-								className={`small-calendar-day ${getCurrentDay(day)} ${setSelectedDayClass(day)}`}
+								className={`small-calendar-day ${setDayClass(day)}`}
 								key={idx}
 								onClick={() => {
-									// setSmallCalendarMonth(currentMonthIdx);
+									setSmallCalendarMonthIndex(currentMonthIdx);
 									setDaySelected(day);
 								}}
 							>

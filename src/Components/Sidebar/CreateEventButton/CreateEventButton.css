@@ -1,12 +1,20 @@
 .create-event-button {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border: 1px solid var(--global-border-gray);
-    border-radius: 25px;
-    padding: 5px 15px;
-    gap: 15px;
-    margin: 10px;
-    box-shadow: 2px 2px  gray;
+	display: flex;
+	align-items: center;
+	background-color: white;
+	border: 1px solid var(--global-border-gray);
+	border-radius: 25px;
+	padding: 5px 15px;
+	gap: 15px;
+	margin: 10px;
+	-webkit-box-shadow: 0px 1px 9px 0px #a1a1a1;
+	box-shadow: 0px 1px 1px 0px #a1a1a1;
+	transition: background-color .3s ease;
+    transition: box-shadow .2s ease;
 }
 
+.create-event-button:hover {
+	background-color: #f1f3f4;
+	-webkit-box-shadow: 0px 2px 4px 2px #a1a1a1;
+	box-shadow: 0px 2px 4px 2px #a1a1a1;
+}
