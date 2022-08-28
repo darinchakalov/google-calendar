@@ -1,3 +1,7 @@
 .sidebar-wrapper {
-    width: 300px;
+	width: 300px;
+}
+
+.hide-sidebar {
+	display: none;
 }

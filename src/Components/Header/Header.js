@@ -1,7 +1,7 @@
 import "./Header.css";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
-import { setNextMonth, setPrevMonth, setCurrentMonth } from "../../+store/reducers/calendarSlice.js";
+import { setNextMonth, setPrevMonth, setCurrentMonth, setShowSidebar } from "../../+store/reducers/calendarSlice.js";
 
 export default function Header() {
 	const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function Header() {
 	return (
 		<div className="navbar-wrapper">
 			<div className="navbar-left-menu">
-				<button type="button" className="hide-sidebar-button header-button">
+				<button onClick={() => dispatch(setShowSidebar())} className="hide-sidebar-button header-button">
 					<i className="fa-solid fa-bars"></i>
 				</button>
 				<div className="navbar-logo-wrapper">

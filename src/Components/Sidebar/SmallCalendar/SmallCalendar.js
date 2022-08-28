@@ -9,7 +9,6 @@ import "./SmallCalendar.css";
 export default function SmallCalendar() {
 	const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-	// const { monthIndex, setSmallCalendarMonthIndex, daySelected, setDaySelected } = useContext(GlobalContext);
 	const dispatch = useDispatch();
 	const monthIndex = useSelector((state) => state.monthIndex);
 	const daySelected = useSelector((state) => state.daySelected);

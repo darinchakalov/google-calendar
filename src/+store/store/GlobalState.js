@@ -17,4 +17,5 @@ export const GlobalState = {
 	labels: [],
 	// updateLabel: () => {},
 	filteredEvents: [],
+	showSidebar: true
 };

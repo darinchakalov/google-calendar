@@ -20,11 +20,20 @@ export const calendarSlice = createSlice({
 		setSmallCalendarMonthIndex: (state, action) => {
 			state.smallCalendarMonthIndex = action.payload;
 		},
+		setShowSidebar: (state) => {
+			state.showSidebar = !state.showSidebar;
+		},
 	},
 });
 
-export const { setNextMonth, setPrevMonth, setCurrentMonth, setDaySelected, setSmallCalendarMonthIndex } =
-	calendarSlice.actions;
+export const {
+	setNextMonth,
+	setPrevMonth,
+	setCurrentMonth,
+	setDaySelected,
+	setSmallCalendarMonthIndex,
+	setShowSidebar,
+} = calendarSlice.actions;
 
 export const selectCalendar = (state) => state.calendar;
 
