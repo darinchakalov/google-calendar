@@ -1,0 +1,9 @@
+.single-day {
+	border: 1px solid var(--global-border-gray);
+    height: 100%;
+    text-align: center;
+}
+
+.current-day {
+    background-color: red;
+}
