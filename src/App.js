@@ -1,22 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "./Components/Header/Header.js";
 import Calendar from "./Components/Calendar/Calendar.js";
-import {getCurrentMonth} from './Utilities/Utilities.js'
+import { getCurrentMonth } from "./Utilities/Utilities.js";
 
 import "./App.css";
-import GlobalContext from "./Context/GlobalContext.js";
 import Sidebar from "./Components/Sidebar/Sidebar.js";
+import { useSelector } from "react-redux";
 
 function App() {
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-	const { monthIndex } = useContext(GlobalContext);
+	const monthIndex = useSelector((state) => state.monthIndex);
 
 	useEffect(() => {
 		setCurrentMonth(getCurrentMonth(monthIndex));
 	}, [monthIndex]);
-
-	
 
 	return (
 		<>

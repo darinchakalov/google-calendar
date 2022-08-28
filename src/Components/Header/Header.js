@@ -1,21 +1,14 @@
 import "./Header.css";
 import dayjs from "dayjs";
-import { useContext } from "react";
-import GlobalContext from "../../Context/GlobalContext.js";
+import { useDispatch, useSelector } from "react-redux";
+import { setNextMonth, setPrevMonth, setCurrentMonth } from "../../+store/reducers/calendarSlice.js";
 
 export default function Header() {
-	const { monthIndex, setMonthIndex } = useContext(GlobalContext);
-
-	function setNextMonth() {
-		setMonthIndex(monthIndex + 1);
-	}
-
-	function setPrevMonth() {
-		setMonthIndex(monthIndex - 1);
-	}
+	const dispatch = useDispatch();
+	const monthIndex = useSelector((state) => state.monthIndex);
 
 	function setToday() {
-		setMonthIndex(monthIndex === dayjs().month() ? monthIndex + Math.random() : dayjs().month());
+		dispatch(setCurrentMonth(monthIndex === dayjs().month() ? monthIndex + Math.random() : dayjs().month()));
 	}
 
 	return (
@@ -31,10 +24,18 @@ export default function Header() {
 				<button type="button" className="today-button header-button" onClick={setToday}>
 					Today
 				</button>
-				<button className="left-arrow arrow-button header-button" type="button" onClick={setPrevMonth}>
+				<button
+					className="left-arrow arrow-button header-button"
+					type="button"
+					onClick={() => dispatch(setPrevMonth())}
+				>
 					<i className="fa-solid fa-chevron-left"></i>
 				</button>
-				<button className="right-arrow arrow-button header-button" type="button" onClick={setNextMonth}>
+				<button
+					className="right-arrow arrow-button header-button"
+					type="button"
+					onClick={() => dispatch(setNextMonth())}
+				>
 					<i className="fa-solid fa-chevron-right"></i>
 				</button>
 				<div className="current-month">{dayjs(new Date(dayjs().year(), monthIndex)).format("MMMM YYYY")}</div>

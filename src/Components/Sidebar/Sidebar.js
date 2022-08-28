@@ -1,6 +1,6 @@
 import CreateEventButton from "./CreateEventButton/CreateEventButton.js";
 import "./Sidebar.css";
-import SmallCalendar from "./SmallCalendar/SmalCalendar.js";
+import SmallCalendar from "./SmallCalendar/SmallCalendar.js";
 
 export default function Sidebar() {
 	return (

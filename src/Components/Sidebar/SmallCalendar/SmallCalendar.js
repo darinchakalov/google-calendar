@@ -1,14 +1,18 @@
 import dayjs from "dayjs";
-import { Fragment, useContext, useEffect, useState } from "react";
-import GlobalContext from "../../../Context/GlobalContext.js";
+import { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setDaySelected, setSmallCalendarMonthIndex } from "../../../+store/reducers/calendarSlice.js";
 import { getCurrentMonth } from "../../../Utilities/Utilities.js";
 
-import "./SmalCalendar.css";
+import "./SmallCalendar.css";
 
 export default function SmallCalendar() {
 	const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-	const { monthIndex, setSmallCalendarMonthIndex, daySelected, setDaySelected } = useContext(GlobalContext);
+	// const { monthIndex, setSmallCalendarMonthIndex, daySelected, setDaySelected } = useContext(GlobalContext);
+	const dispatch = useDispatch();
+	const monthIndex = useSelector((state) => state.monthIndex);
+	const daySelected = useSelector((state) => state.daySelected);
 
 	useEffect(() => {
 		setCurrentMonth(getCurrentMonth(currentMonthIdx));
@@ -29,7 +33,7 @@ export default function SmallCalendar() {
 	function setDayClass(day) {
 		const format = "DD-MM-YY";
 		const thisDay = day.format(format);
-		const selDay = daySelected.format(format);
+		const selDay = daySelected
 		const currentDay = dayjs().format(format);
 		if (thisDay === currentDay) {
 			return "small-calendar-current-day";
@@ -66,8 +70,8 @@ export default function SmallCalendar() {
 								className={`small-calendar-day ${setDayClass(day)}`}
 								key={idx}
 								onClick={() => {
-									setSmallCalendarMonthIndex(currentMonthIdx);
-									setDaySelected(day);
+									dispatch(setDaySelected(day.format("DD-MM-YY")));
+									dispatch(setSmallCalendarMonthIndex(currentMonthIdx));
 								}}
 							>
 								<span className="text-sm">{day.format("D")}</span>
