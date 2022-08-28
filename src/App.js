@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react";
 
 import Header from "./Components/Header/Header.js";
 import Calendar from "./Components/Calendar/Calendar.js";
-import dayjs from "dayjs";
+import {getCurrentMonth} from './Utilities/Utilities.js'
 
 import "./App.css";
 import GlobalContext from "./Context/GlobalContext.js";
+import Sidebar from "./Components/Sidebar/Sidebar.js";
 
 function App() {
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
@@ -15,24 +16,15 @@ function App() {
 		setCurrentMonth(getCurrentMonth(monthIndex));
 	}, [monthIndex]);
 
-	function getCurrentMonth(month = dayjs().month()) {
-		month = Math.floor(month);
-		const year = dayjs().year();
-		const firstDayOfTheMonth = dayjs(new Date(year, month, 1)).day();
-		let currentMonthCount = 0 - firstDayOfTheMonth;
-		const daysMatrix = new Array(5).fill([]).map(() => {
-			return new Array(7).fill(null).map(() => {
-				currentMonthCount++;
-				return dayjs(new Date(year, month, currentMonthCount));
-			});
-		});
-		return daysMatrix;
-	}
+	
 
 	return (
 		<>
 			<Header />
-			<Calendar month={currentMonth} />
+			<div className="main-wrapper">
+				<Sidebar />
+				<Calendar month={currentMonth} />
+			</div>
 		</>
 	);
 }

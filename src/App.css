@@ -1,6 +1,7 @@
 :root {
 	--global-text-gray: rgb(95, 99, 104);
 	--global-border-gray: rgb(218, 220, 224);
+	--global-google-blue: rgb(26, 115, 232);
 }
 
 @font-face {
@@ -10,4 +11,10 @@
 
 * {
 	font-family: calendar-font;
+}
+
+
+.main-wrapper {
+	display: flex;
+	width: 100vw;
 }

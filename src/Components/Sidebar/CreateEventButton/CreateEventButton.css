@@ -1,0 +1,12 @@
+.create-event-button {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid var(--global-border-gray);
+    border-radius: 25px;
+    padding: 5px 15px;
+    gap: 15px;
+    margin: 10px;
+    box-shadow: 2px 2px  gray;
+}
+
