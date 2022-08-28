@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
 import Header from "./Components/Header/Header.js";
-import ContextWrapper from "./Context/ContextWrapper.js";
 import Calendar from "./Components/Calendar/Calendar.js";
 import dayjs from "dayjs";
 
@@ -32,10 +31,8 @@ function App() {
 
 	return (
 		<>
-			<ContextWrapper>
-				<Header />
-				<Calendar month={currentMonth} />
-			</ContextWrapper>
+			<Header />
+			<Calendar month={currentMonth} />
 		</>
 	);
 }

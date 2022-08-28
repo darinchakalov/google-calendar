@@ -7,11 +7,11 @@ export default function Header() {
 	const { monthIndex, setMonthIndex } = useContext(GlobalContext);
 
 	function setNextMonth() {
-		setMonthIndex(monthIndex - 1);
+		setMonthIndex(monthIndex + 1);
 	}
 
 	function setPrevMonth() {
-		setMonthIndex(monthIndex + 1);
+		setMonthIndex(monthIndex - 1);
 	}
 
 	function setToday() {
