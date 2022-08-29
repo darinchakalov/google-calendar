@@ -33,6 +33,7 @@ export default function SmallCalendar() {
 		const thisDay = day.format(format);
 		let selDay;
 		if (typeof daySelected === "string") {
+			dispatch(setDaySelected(dayjs(daySelected)));
 			selDay = dayjs(daySelected);
 		} else {
 			selDay = daySelected && daySelected.format(format);

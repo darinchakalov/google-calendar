@@ -5,6 +5,7 @@ import uniqid from "uniqid";
 
 import "./EventModal.css";
 import { addEvent, deleteEvent, setSelectedEvent, setShowEventModal } from "../../+store/reducers/eventReducers.js";
+import { setDaySelected } from "../../+store/reducers/calendarReducers.js";
 
 export default function EventModal() {
 	const dispatch = useDispatch();
@@ -15,8 +16,7 @@ export default function EventModal() {
 	let { daySelected } = useSelector((state) => state.calendar);
 	if (typeof daySelected === "string") {
 		daySelected = dayjs(daySelected);
-	} else {
-		daySelected = daySelected.format("DD-MM-YY");
+		dispatch(setDaySelected(daySelected))
 	}
 	let { selectedEvent } = useSelector((state) => state.event);
 	if (!daySelected) {
