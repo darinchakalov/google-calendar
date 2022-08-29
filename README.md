@@ -20,6 +20,9 @@ From the project folder run `npm start` which will load the application in the b
 
 ## Screenshots
 
+![screenshot-darinc2 sg-host com-2022 08 29-14_53_29](https://user-images.githubusercontent.com/19432229/187195313-ffd0c4c9-300b-457d-ac7d-f788745eac31.png)
+![screenshot-darinc2 sg-host com-2022 08 29-14_53_35](https://user-images.githubusercontent.com/19432229/187195320-a7226eba-83ac-4214-8c05-3a5bb3c3b04e.png)
+
 ## Author details
 
 - Name: Darin Chakalov
