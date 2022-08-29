@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 import uniqid from "uniqid";
 
 import "./EventModal.css";
-import { addEvent, setShowEventModal } from "../../+store/reducers/calendarSlice.js";
+import { addEvent, deleteEvent, setSelectedEvent, setShowEventModal } from "../../+store/reducers/calendarSlice.js";
 
 export default function EventModal() {
 	const dispatch = useDispatch();
@@ -17,6 +17,12 @@ export default function EventModal() {
 		daySelected = dayjs();
 	}
 
+	useEffect(() => {
+		if (selectedEvent) {
+			setCurrentEvent(selectedEvent);
+		}
+	}, []);
+
 	function modalSubmitHandler(e) {
 		e.preventDefault();
 		const calendarEvent = {
@@ -24,8 +30,15 @@ export default function EventModal() {
 			description: currentEvent.description,
 			day: daySelected.format("DD-MM-YY"),
 			id: selectedEvent ? selectedEvent.id : uniqid(),
-        };
+		};
 		dispatch(addEvent(calendarEvent));
+		dispatch(setSelectedEvent(null));
+		dispatch(setShowEventModal(false));
+	}
+
+	function eventDeleteHandler() {
+		dispatch(deleteEvent(selectedEvent));
+		dispatch(setSelectedEvent(null));
 		dispatch(setShowEventModal(false));
 	}
 
@@ -34,7 +47,7 @@ export default function EventModal() {
 			<header className="event-modal-header">
 				<i className="fa-solid fa-grip-lines"></i>
 				<div className="event-modal-header-buttons-wrapper">
-					{selectedEvent ? <i class="fa-solid fa-trash-can"></i> : ""}
+					{selectedEvent ? <i onClick={eventDeleteHandler} className="fa-solid fa-trash-can"></i> : ""}
 					<i className="fa-solid fa-xmark" onClick={() => dispatch(setShowEventModal(false))}></i>
 				</div>
 			</header>
@@ -44,7 +57,7 @@ export default function EventModal() {
 						className="event-modal-title-input"
 						type="text"
 						name="title"
-						value={selectedEvent ? selectedEvent.title : currentEvent.title}
+						value={currentEvent.title}
 						placeholder="Add title"
 						required
 						onChange={(e) => {
@@ -70,7 +83,7 @@ export default function EventModal() {
 									description: e.target.value,
 								}));
 							}}
-							value={selectedEvent?.description}
+							value={currentEvent.description}
 						></textarea>
 					</div>
 					<button className="event-modal-save-button" type="submit" onClick={modalSubmitHandler}>
