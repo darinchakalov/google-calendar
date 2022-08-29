@@ -1,4 +1,4 @@
-.single-day {
+.single-day-wrapper {
 	border: 1px solid var(--global-border-gray);
     height: 100%;
     text-align: center;
@@ -9,6 +9,7 @@
 
 .day-header {
     margin-bottom: 0;
+    max-height: 50%;
 }
 
 .current-day {
@@ -19,4 +20,27 @@
     width: 20px;
     color: white;
     text-align: center;
+}
+
+.day-event-section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 90%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.single-event {
+    align-self: flex-start;
+    justify-self: flex-start;
+    background-color: var(--global-google-blue);
+    color: white;
+    padding: 1px 5px;
+    border-radius: 5px;
+    margin: 1px 0px;
+    width: 90%;
+    overflow: hidden;
+    cursor: pointer;
 }

@@ -44,7 +44,7 @@ export default function EventModal() {
 						className="event-modal-title-input"
 						type="text"
 						name="title"
-						value={selectedEvent?.title}
+						value={selectedEvent ? selectedEvent.title : currentEvent.title}
 						placeholder="Add title"
 						required
 						onChange={(e) => {
