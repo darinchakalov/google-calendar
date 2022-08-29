@@ -5,7 +5,6 @@ import uniqid from "uniqid";
 
 import "./EventModal.css";
 import { addEvent, deleteEvent, setSelectedEvent, setShowEventModal } from "../../+store/reducers/eventReducers.js";
-import { setDaySelected } from "../../+store/reducers/calendarReducers.js";
 
 export default function EventModal() {
 	const dispatch = useDispatch();
@@ -14,6 +13,11 @@ export default function EventModal() {
 		description: "",
 	});
 	let { daySelected } = useSelector((state) => state.calendar);
+	if (typeof daySelected === "string") {
+		daySelected = dayjs(daySelected);
+	} else {
+		daySelected = daySelected.format("DD-MM-YY");
+	}
 	let { selectedEvent } = useSelector((state) => state.event);
 	if (!daySelected) {
 		daySelected = dayjs();
@@ -23,7 +27,7 @@ export default function EventModal() {
 		if (selectedEvent) {
 			setCurrentEvent(selectedEvent);
 		}
-	}, []);
+	}, [selectedEvent]);
 
 	function modalSubmitHandler(e) {
 		e.preventDefault();
@@ -71,7 +75,7 @@ export default function EventModal() {
 					/>
 					<div className="text-area-input-wrapper">
 						<i className="fa-regular fa-clock"></i>
-						{daySelected?.format("MMM D, YYYY")}
+						{daySelected ? daySelected.format("MMM D, YYYY") : dayjs().format("MMM D, YYYY")}
 					</div>
 					<div className="text-area-input-wrapper">
 						<i className="fa-solid fa-bars-staggered"></i>

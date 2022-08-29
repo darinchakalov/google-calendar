@@ -1,7 +1,6 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "../reducers/index.js";
 import { persistReducer, persistStore } from "redux-persist";
-import storageSession from "reduxjs-toolkit-persist/lib/storage/session";
 
 import storage from "redux-persist/lib/storage";
 

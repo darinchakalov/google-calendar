@@ -33,8 +33,7 @@ export default function SmallCalendar() {
 		const thisDay = day.format(format);
 		let selDay;
 		if (typeof daySelected === "string") {
-			const [year, month, day] = daySelected.split("T")[0].split("-");
-			selDay = `${day}-${month}-${year}`;
+			selDay = dayjs(daySelected);
 		} else {
 			selDay = daySelected && daySelected.format(format);
 		}
