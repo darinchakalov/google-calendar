@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
+import uniqid from "uniqid";
 
 import "./EventModal.css";
-import { setShowEventModal } from "../../+store/reducers/calendarSlice.js";
+import { addEvent, setShowEventModal } from "../../+store/reducers/calendarSlice.js";
 
 export default function EventModal() {
+	const dispatch = useDispatch();
 	const [currentEvent, setCurrentEvent] = useState({
 		title: "",
 		description: "",
@@ -15,7 +17,17 @@ export default function EventModal() {
 		daySelected = dayjs();
 	}
 
-	const dispatch = useDispatch();
+	function modalSubmitHandler(e) {
+		e.preventDefault();
+		const calendarEvent = {
+			title: currentEvent.title,
+			description: currentEvent.description,
+			day: daySelected.format("DD-MM-YY"),
+			id: selectedEvent ? selectedEvent.id : uniqid(),
+        };
+		dispatch(addEvent(calendarEvent));
+		dispatch(setShowEventModal(false));
+	}
 
 	return (
 		<div className="event-modal-wrapper">
@@ -43,14 +55,25 @@ export default function EventModal() {
 						}}
 					/>
 					<div className="text-area-input-wrapper">
-						<i class="fa-regular fa-clock"></i>
+						<i className="fa-regular fa-clock"></i>
 						{daySelected?.format("MMM D, YYYY")}
 					</div>
 					<div className="text-area-input-wrapper">
-						<i class="fa-solid fa-bars-staggered"></i>
-						<textarea className="modal-textarea" rows="6" cols="40"></textarea>
+						<i className="fa-solid fa-bars-staggered"></i>
+						<textarea
+							className="modal-textarea"
+							rows="6"
+							cols="40"
+							onChange={(e) => {
+								setCurrentEvent((state) => ({
+									...state,
+									description: e.target.value,
+								}));
+							}}
+							value={selectedEvent?.description}
+						></textarea>
 					</div>
-					<button className="event-modal-save-button" type="submit">
+					<button className="event-modal-save-button" type="submit" onClick={modalSubmitHandler}>
 						Save
 					</button>
 				</form>

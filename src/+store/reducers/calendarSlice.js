@@ -26,6 +26,9 @@ export const calendarSlice = createSlice({
 		setShowEventModal: (state, action) => {
 			state.showEventModal = action.payload;
 		},
+		addEvent: (state, action) => {
+			state.savedEvents[action.payload.id] = action.payload;
+		},
 	},
 });
 
@@ -37,6 +40,7 @@ export const {
 	setSmallCalendarMonthIndex,
 	setShowSidebar,
 	setShowEventModal,
+	addEvent,
 } = calendarSlice.actions;
 
 export const selectCalendar = (state) => state.calendar;

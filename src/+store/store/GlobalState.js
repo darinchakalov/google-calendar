@@ -10,7 +10,7 @@ export const GlobalState = {
 	showEventModal: false,
 	// setShowEventModal: () => {},
 	// dispatchCalEvent: ({ type, payload }) => {},
-	savedEvents: [],
+	savedEvents: {},
 	selectedEvent: null,
 	// setSelectedEvent: () => {},
 	// setLabels: () => {},
