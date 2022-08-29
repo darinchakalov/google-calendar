@@ -12,6 +12,8 @@ A simple frontend only clone of Google Calendar using React 18.
 
 From the project folder run `npm start` which will load the application in the browser on address `http://localhost:3000/`
 
+Project is also live at: `http://darinc2.sg-host.com/`
+
 ## How to add event
 
 - Click on the date to see the popup
