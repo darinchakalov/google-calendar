@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GlobalState } from "../store/GlobalState.js";
+import { CalendarState } from "../store/CalendarState.js";
 
 export const calendarSlice = createSlice({
 	name: "calendar",
-	initialState: GlobalState,
+	initialState: CalendarState,
 	reducers: {
 		setNextMonth: (state) => {
 			state.monthIndex += 1;
@@ -23,18 +23,18 @@ export const calendarSlice = createSlice({
 		setShowSidebar: (state) => {
 			state.showSidebar = !state.showSidebar;
 		},
-		setShowEventModal: (state, action) => {
-			state.showEventModal = action.payload;
-		},
-		addEvent: (state, action) => {
-			state.savedEvents[action.payload.id] = action.payload;
-		},
-		deleteEvent: (state, action) => {
-			delete state.savedEvents[action.payload.id];
-		},
-		setSelectedEvent: (state, action) => {
-			state.selectedEvent = action.payload;
-		},
+		// setShowEventModal: (state, action) => {
+		// 	state.showEventModal = action.payload;
+		// },
+		// addEvent: (state, action) => {
+		// 	state.savedEvents[action.payload.id] = action.payload;
+		// },
+		// deleteEvent: (state, action) => {
+		// 	delete state.savedEvents[action.payload.id];
+		// },
+		// setSelectedEvent: (state, action) => {
+		// 	state.selectedEvent = action.payload;
+		// },
 	},
 });
 
@@ -45,10 +45,10 @@ export const {
 	setDaySelected,
 	setSmallCalendarMonthIndex,
 	setShowSidebar,
-	setShowEventModal,
-	addEvent,
-	deleteEvent,
-	setSelectedEvent,
+	// setShowEventModal,
+	// addEvent,
+	// deleteEvent,
+	// setSelectedEvent,
 } = calendarSlice.actions;
 
 export const selectCalendar = (state) => state.calendar;

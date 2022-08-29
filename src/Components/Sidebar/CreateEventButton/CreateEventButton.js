@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setShowEventModal } from "../../../+store/reducers/calendarSlice.js";
+import { setShowEventModal } from "../../../+store/reducers/eventReducers.js";
 import "./CreateEventButton.css";
 
 export default function CreateEventButton() {

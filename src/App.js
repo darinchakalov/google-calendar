@@ -11,7 +11,8 @@ import EventModal from "./Components/EventModal/EventModal.js";
 
 function App() {
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
-	const { monthIndex, showEventModal } = useSelector((state) => state);
+	const { monthIndex } = useSelector((state) => state.calendar);
+	const { showEventModal } = useSelector((state) => state.event);
 
 	useEffect(() => {
 		setCurrentMonth(getCurrentMonth(monthIndex));

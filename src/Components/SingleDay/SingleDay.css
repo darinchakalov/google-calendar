@@ -12,6 +12,21 @@
     max-height: 50%;
 }
 
+.day-of-the-week{
+    margin: 0;
+}
+
+.day-of-the-month{
+    margin: 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+.day-of-the-month:hover{
+    background-color: #f1f3f4;
+}
+
 .current-day {
     background-color: var(--global-google-blue);
     border-radius: 50%;
@@ -29,7 +44,6 @@
     align-self: flex-start;
     width: 90%;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .single-event {

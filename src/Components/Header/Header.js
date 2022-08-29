@@ -1,11 +1,11 @@
 import "./Header.css";
 import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
-import { setNextMonth, setPrevMonth, setCurrentMonth, setShowSidebar } from "../../+store/reducers/calendarSlice.js";
+import { setNextMonth, setPrevMonth, setCurrentMonth, setShowSidebar } from "../../+store/reducers/calendarReducers.js";
 
 export default function Header() {
 	const dispatch = useDispatch();
-	const monthIndex = useSelector((state) => state.monthIndex);
+	const {monthIndex} = useSelector((state) => state.calendar);
 
 	function setToday() {
 		dispatch(setCurrentMonth(monthIndex === dayjs().month() ? monthIndex + Math.random() : dayjs().month()));

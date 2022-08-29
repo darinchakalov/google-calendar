@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setDaySelected, setSmallCalendarMonthIndex } from "../../../+store/reducers/calendarSlice.js";
+import { setDaySelected, setSmallCalendarMonthIndex } from "../../../+store/reducers/calendarReducers.js";
 import { getCurrentMonth } from "../../../Utilities/Utilities.js";
 
 import "./SmallCalendar.css";
@@ -10,8 +10,7 @@ export default function SmallCalendar() {
 	const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
 	const [currentMonth, setCurrentMonth] = useState(getCurrentMonth());
 	const dispatch = useDispatch();
-	const monthIndex = useSelector((state) => state.monthIndex);
-	const daySelected = useSelector((state) => state.daySelected);
+	const { monthIndex, daySelected } = useSelector((state) => state.calendar);
 
 	useEffect(() => {
 		setCurrentMonth(getCurrentMonth(currentMonthIdx));
@@ -32,7 +31,13 @@ export default function SmallCalendar() {
 	function setDayClass(day) {
 		const format = "DD-MM-YY";
 		const thisDay = day.format(format);
-		const selDay = daySelected?.format(format);
+		let selDay;
+		if (typeof daySelected === "string") {
+			const [year, month, day] = daySelected.split("T")[0].split("-");
+			selDay = `${day}-${month}-${year}`;
+		} else {
+			selDay = daySelected && daySelected.format(format);
+		}
 		const currentDay = dayjs().format(format);
 		if (thisDay === currentDay) {
 			return "small-calendar-current-day";

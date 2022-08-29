@@ -4,10 +4,11 @@ import "./Sidebar.css";
 import SmallCalendar from "./SmallCalendar/SmallCalendar.js";
 
 export default function Sidebar() {
-	const showSideBar = useSelector((state) => state.showSidebar);
+	const {showSidebar} = useSelector((state) => state.calendar);
+
 
 	function setHideSideBarClass() {
-		if (!showSideBar) {
+		if (!showSidebar) {
 			return "hide-sidebar";
 		} else return "";
 	}
